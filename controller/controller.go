@@ -1,12 +1,17 @@
 package controller
 
 import (
-	"fmt"
+	"log"
+	"net/http"
+	"encoding/json"
+	"mysqldb"
+	"service"
 
 )
 
-func getEmployee(w http.ResponseWriter, r *http.Request){
+func GetEmployee(w http.ResponseWriter, r *http.Request){
 log.Println("*****getEmployee Api called************8");
-json.NewEncoder.Encode("");
-
+conn:=mysqldb.DbConn();
+emp:=service.FetchAllEmployee(conn);
+json.NewEncoder(w).Encode(emp);
 }
